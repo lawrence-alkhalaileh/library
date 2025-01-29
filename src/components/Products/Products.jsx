@@ -1,12 +1,27 @@
-import React from 'react'
-import { Register, Navbar, Footer, About, Contact } from '../exports'
+import { useState, useEffect } from 'react';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { Navbar, Footer } from '../exports'
+import { app } from '../../firebaseConfig'
 import './products.css'
 
 function Products() {
+  const auth = getAuth(app)
+
+  useEffect(onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // const uid = user.uid;
+      // console.log(uid)
+      
+    } else {
+      // User is signed out
+      // ...
+    }
+  }), [])
+
   return (
     <>
       <Navbar />
-      <h1>dsfa</h1>
+      <h1>asjkl</h1>
       <Footer />
     </>
   )
