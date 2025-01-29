@@ -1,0 +1,61 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    /* Distribute space between the navbar and login */
+    align-items: center;
+    /* Center items vertically */
+    padding: 10px 20px;
+    /* Adds padding around the navbar */
+    background-color: #333;
+    /* Background color of the navigation bar */
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    /* Centers the links horizontally */
+    flex-grow: 1;
+    /* Allow navbar links to take up available space */
+}
+
+nav a {
+    text-decoration: none;
+    /* Remove underline from links */
+    color: #fff;
+    /* White text color */
+    margin: 0 15px;
+    /* Space between the links */
+    padding: 10px 20px;
+    /* Padding inside the links */
+    border-radius: 4px;
+    /* Round the corners of the links */
+    transition: background-color 0.3s ease;
+    /* Smooth transition for hover effect */
+}
+
+nav a:hover {
+    background-color: #555;
+    /* Change background color on hover */
+}
+
+.signup {
+    color: white;
+    /* White text color for the Login button */
+    padding: 10px 20px;
+    border-radius: 4px;
+    /* Rounds the corners of the Login button */
+    text-decoration: none;
+    /* Removes underline from the Login button */
+    background-color: #4CAF50;
+    /* Green background color for the Login button */
+}
+
+.signup:hover {
+    background-color: #45a049;
+    /* Slightly darker background on hover */
+}
+
+.signup:active {
+    background-color: #388e3c;
+    /* Darker green background when clicked */
+}
