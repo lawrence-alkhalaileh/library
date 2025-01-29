@@ -1,8 +1,13 @@
 import React from 'react'
+import { Navbar, Footer } from '../exports'
 
 function About() {
   return (
-    <div>About</div>
+    <>
+      <Navbar />
+      <h1>about us</h1>
+      <Footer />
+    </>
   )
 }
 

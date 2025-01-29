@@ -1,9 +1,14 @@
 import React from 'react'
+import { Register, Navbar, Footer, About, Contact } from '../exports'
 import './products.css'
 
 function Products() {
   return (
-    <div>Products</div>
+    <>
+      <Navbar />
+      <h1>dsfa</h1>
+      <Footer />
+    </>
   )
 }
 

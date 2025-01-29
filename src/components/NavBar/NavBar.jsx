@@ -1,26 +1,18 @@
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
-import { Login, Products, Footer, About, Contact } from '../exports'
+import { NavLink } from 'react-router-dom'
 import './navbar.css'
 
 function NavBar() {
+
+
   return (
-    <BrowserRouter>
-      <nav>
-        <div className='navbar'>
-          <Link to="/">Home</Link>
-          <Link to="/about">About us</Link>
-          <Link to="/contact">Contact</Link>
-        </div>
-        <Link to="/signup" className='signup'>Login</Link>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Products />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/signup" element={<Login />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <nav>
+      <div className='navbar'>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/about">About us</NavLink>
+        <NavLink to="/contact">Contact</NavLink>
+      </div>
+      <NavLink to="/Register" className='signup'>Register</NavLink>
+    </nav>
   )
 }
 

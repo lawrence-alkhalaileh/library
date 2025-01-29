@@ -1,8 +1,13 @@
 import React from 'react'
+import { Navbar, Footer } from '../exports'
 
 function Contact() {
   return (
-    <div>Contact</div>
+    <>
+      <Navbar />
+      <h1>contact</h1>
+      <Footer />
+    </>
   )
 }
 
