@@ -38,19 +38,21 @@ nav a:hover {
     /* Change background color on hover */
 }
 
-.signup {
+.signup,
+button {
     color: white;
     /* White text color for the Login button */
     padding: 10px 20px;
+    border: none;
     border-radius: 4px;
     /* Rounds the corners of the Login button */
     text-decoration: none;
     /* Removes underline from the Login button */
     background-color: #3f62cc;
-    /* Green background color for the Login button */
 }
 
-.signup:hover {
+.signup:hover,
+but {
     background-color: #1e4bd4;
     /* Slightly darker background on hover */
 }
