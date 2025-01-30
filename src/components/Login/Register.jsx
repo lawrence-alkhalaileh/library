@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { app } from '../../firebaseConfig';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebaseConfig';
 import './login.css';
 
 
@@ -20,8 +20,6 @@ function Register() {
     }
 
     setError('');
-
-    const auth = getAuth(app);
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       setEmail('');

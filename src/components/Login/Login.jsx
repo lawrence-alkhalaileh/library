@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { app } from '../../firebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebaseConfig';
 import './login.css';
 
 function Login() {
@@ -19,7 +19,6 @@ function Login() {
         }
 
         setError('');
-        const auth = getAuth(app);
         try {
             await signInWithEmailAndPassword(auth, email, password);
             setEmail('');
@@ -60,7 +59,7 @@ function Login() {
                         Login
                     </button>
                 </form>
-                <Link to='/register'>Don't have an account? Register</Link>
+                <Link to='/register'>Don&apos;t have an account? Register</Link>
             </div>
         </div>
     );
