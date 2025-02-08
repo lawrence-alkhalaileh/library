@@ -5,6 +5,8 @@ import axios from 'axios';
 
 function Products() {
   const [books, setBooks] = useState([]);
+  const [editBookId, setEditBookId] = useState(null);
+  const [editTitle, setEditTitle] = useState('');
   const [newBook, setNewBook] = useState({ title: '', author: '', description: '', imageUrl: '' });
 
   const databaseUrl = 'https://first-react-project-46279-default-rtdb.firebaseio.com/books.json';
@@ -19,7 +21,7 @@ function Products() {
             id: key,
             ...response.data[key]
           }));
-          setBooks(booksArray.filter(book => !book.isDeleted)); // Filter out soft-deleted books
+          setBooks(booksArray.filter(book => !book.isDeleted));
         }
       } catch (error) {
         console.error('Error fetching books:', error);
@@ -46,13 +48,27 @@ function Products() {
   const handleSoftDeleteBook = async (id) => {
     try {
       const updatedBook = { isDeleted: true };
-      await axios.patch(`https://first-react-project-46279-default-rtdb.firebaseio.com/${id}.json`, updatedBook);
+      await axios.patch(`https://first-react-project-46279-default-rtdb.firebaseio.com/books.json/${id}.json`, updatedBook);
       setBooks(books.filter((book) => book.id !== id));
     } catch (error) {
       console.error('Error soft deleting book:', error);
     }
   };
+  const handleEditBook = (id, currentTitle) => {
+    setEditBookId(id);
+    setEditTitle(currentTitle);
+  };
 
+  const handleSaveEdit = async (id) => {
+    try {
+      await axios.patch(`https://first-react-project-46279-default-rtdb.firebaseio.com/books.json/${id}.json`, { title: editTitle });
+      setBooks(books.map(book => book.id === id ? { ...book, title: editTitle } : book));
+      setEditBookId(null);
+      setEditTitle('');
+    } catch (error) {
+      console.error('Error updating book title:', error);
+    }
+  };
 
   return (
     <>
@@ -90,17 +106,29 @@ function Products() {
         </form>
       </div>
 
+
       <div className="book-list">
         {books.map((book) => (
           <div key={book.id} className="book-card">
-            <h3>{book.title}</h3>
-            <p>{book.author}</p>
-            <p>{book.description}</p>
-            {book.imageUrl && <img src={book.imageUrl} alt={book.title} />}
-            <button onClick={() => handleSoftDeleteBook(book.id)}>Delete</button>
+            {editBookId === book.id ? (
+              <>
+                <input type="text" value={editTitle} onChange={(e) => setEditTitle(e.target.value)} />
+                <button onClick={() => handleSaveEdit(book.id)}>Save</button>
+              </>
+            ) : (
+              <>
+                <h3>{book.title}</h3>
+                <p>{book.author}</p>
+                <p>{book.description}</p>
+                {book.imageUrl && <img src={book.imageUrl} alt={book.title} />}
+                <button onClick={() => handleEditBook(book.id, book.title)}>Edit</button>
+                <button onClick={() => handleSoftDeleteBook(book.id)}>Delete</button>
+              </>
+            )}
           </div>
         ))}
       </div>
+
       <Footer />
     </>
   )
